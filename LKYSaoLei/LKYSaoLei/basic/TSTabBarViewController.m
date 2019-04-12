@@ -9,7 +9,8 @@
 #import "TSTabBarViewController.h"
 #import "TSNavViewController.h"
 
-#import "Demo01ViewController.h"
+//#import "Demo01ViewController.h"
+#import "SaoLeiViewController.h"
 
 @interface TSTabBarViewController ()
 
@@ -37,7 +38,7 @@
 //    //第三方
 //    [self addOneChildVc:[[ThirdPartyViewController alloc]init] Image:@"tab2(no)" SelectImage:@"tab2" Title:@"第三方"];
     
-    [self addOneChildVc:[[Demo01ViewController alloc]init] Image:@"tab1(no)" SelectImage:@"tab1" Title:@"轮播图"];
+    [self addOneChildVc:[[SaoLeiViewController alloc]init] Image:@"tab1(no)" SelectImage:@"tab1" Title:@"轮播图"];
 
 }
 #pragma mark 添加一个子控制器

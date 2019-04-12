@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "TSTabBarViewController.h"
+//#import "TSTabBarViewController.h"
+#import "SaoLeiViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -18,14 +19,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
-//    [self toMain];
+    [self toMain];
     
     return YES;
 }
 - (void)toMain
 {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    TSTabBarViewController *tsVc = [[TSTabBarViewController alloc]init];
+//    TSTabBarViewController *tsVc = [[TSTabBarViewController alloc]init];
+    SaoLeiViewController *tsVc = [[SaoLeiViewController alloc]init];
     self.window.rootViewController = tsVc;
     self.window.backgroundColor = arcColor;
     [self.window makeKeyAndVisible];

@@ -131,6 +131,8 @@
 		CC6C112C2215531700E4D14E /* SDCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C11232215531700E4D14E /* SDCollectionViewCell.m */; };
 		CC6C112D2215531700E4D14E /* SDCycleScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C11252215531700E4D14E /* SDCycleScrollView.m */; };
 		CC6C112E2215531700E4D14E /* UIView+SDExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = CC6C11272215531700E4D14E /* UIView+SDExtension.m */; };
+		CC87A18B225DE294005C5172 /* SaoLeiViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC87A18A225DE294005C5172 /* SaoLeiViewController.m */; };
+		CC87A18E225DECEB005C5172 /* MButton.m in Sources */ = {isa = PBXBuildFile; fileRef = CC87A18D225DECEB005C5172 /* MButton.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -139,14 +141,14 @@
 			containerPortal = CC6C0F62221509A500E4D14E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CC6C0F69221509A500E4D14E;
-			remoteInfo = QQMusicLKY01;
+			remoteInfo = LKYSaoLei;
 		};
 		CC6C0F91221509A700E4D14E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CC6C0F62221509A500E4D14E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = CC6C0F69221509A500E4D14E;
-			remoteInfo = QQMusicLKY01;
+			remoteInfo = LKYSaoLei;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -404,6 +406,10 @@
 		CC6C11252215531700E4D14E /* SDCycleScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDCycleScrollView.m; sourceTree = "<group>"; };
 		CC6C11262215531700E4D14E /* UIView+SDExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+SDExtension.h"; sourceTree = "<group>"; };
 		CC6C11272215531700E4D14E /* UIView+SDExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+SDExtension.m"; sourceTree = "<group>"; };
+		CC87A189225DE294005C5172 /* SaoLeiViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SaoLeiViewController.h; sourceTree = "<group>"; };
+		CC87A18A225DE294005C5172 /* SaoLeiViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SaoLeiViewController.m; sourceTree = "<group>"; };
+		CC87A18C225DECEB005C5172 /* MButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MButton.h; sourceTree = "<group>"; };
+		CC87A18D225DECEB005C5172 /* MButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MButton.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -971,6 +977,8 @@
 			children = (
 				CC6C111522154E9200E4D14E /* Demo01ViewController.h */,
 				CC6C111622154E9200E4D14E /* Demo01ViewController.m */,
+				CC87A189225DE294005C5172 /* SaoLeiViewController.h */,
+				CC87A18A225DE294005C5172 /* SaoLeiViewController.m */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
@@ -978,6 +986,8 @@
 		CC6C111022154E6400E4D14E /* view */ = {
 			isa = PBXGroup;
 			children = (
+				CC87A18C225DECEB005C5172 /* MButton.h */,
+				CC87A18D225DECEB005C5172 /* MButton.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -1036,7 +1046,7 @@
 			dependencies = (
 			);
 			name = LKYSaoLei;
-			productName = QQMusicLKY01;
+			productName = LKYSaoLei;
 			productReference = CC6C0F6A221509A500E4D14E /* LKYSaoLei.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -1054,7 +1064,7 @@
 				CC6C0F87221509A700E4D14E /* PBXTargetDependency */,
 			);
 			name = LKYSaoLeiTests;
-			productName = QQMusicLKY01Tests;
+			productName = LKYSaoLeiTests;
 			productReference = CC6C0F85221509A700E4D14E /* LKYSaoLeiTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -1072,7 +1082,7 @@
 				CC6C0F92221509A700E4D14E /* PBXTargetDependency */,
 			);
 			name = LKYSaoLeiUITests;
-			productName = QQMusicLKY01UITests;
+			productName = LKYSaoLeiUITests;
 			productReference = CC6C0F90221509A700E4D14E /* LKYSaoLeiUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
@@ -1192,6 +1202,7 @@
 				CC6C112C2215531700E4D14E /* SDCollectionViewCell.m in Sources */,
 				CC6C107D221516F700E4D14E /* NSBundle+MJRefresh.m in Sources */,
 				CC6C1095221516F700E4D14E /* NSObject+MJProperty.m in Sources */,
+				CC87A18B225DE294005C5172 /* SaoLeiViewController.m in Sources */,
 				CC6C10F722152FE800E4D14E /* LKYDatePicker.m in Sources */,
 				CC6C1094221516F700E4D14E /* NSObject+MJKeyValue.m in Sources */,
 				CC6C108E221516F700E4D14E /* MJFoundation.m in Sources */,
@@ -1237,6 +1248,7 @@
 				CC6C110622152FE800E4D14E /* net_CallWebService.m in Sources */,
 				CC6C10F422152FE800E4D14E /* LKYButton.m in Sources */,
 				CC6C10A7221516F700E4D14E /* UIImage+WebP.m in Sources */,
+				CC87A18E225DECEB005C5172 /* MButton.m in Sources */,
 				CC6C108B221516F700E4D14E /* ViewController+MASAdditions.m in Sources */,
 				CC6C1097221516F700E4D14E /* NSObject+MyKeyValue.m in Sources */,
 				CC6C0F6F221509A500E4D14E /* AppDelegate.m in Sources */,
@@ -1433,10 +1445,10 @@
 				DEVELOPMENT_TEAM = MJ444N6W35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QQMusicLKY01/Third/OSS",
+					"$(PROJECT_DIR)/LKYSaoLei/Third/OSS",
 				);
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/QQMusicLKY01/Pch/PrefixHeader.pch";
-				INFOPLIST_FILE = QQMusicLKY01/Info.plist;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/LKYSaoLei/Pch/PrefixHeader.pch";
+				INFOPLIST_FILE = LKYSaoLei/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1456,10 +1468,10 @@
 				DEVELOPMENT_TEAM = MJ444N6W35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/QQMusicLKY01/Third/OSS",
+					"$(PROJECT_DIR)/LKYSaoLei/Third/OSS",
 				);
-				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/QQMusicLKY01/Pch/PrefixHeader.pch";
-				INFOPLIST_FILE = QQMusicLKY01/Info.plist;
+				GCC_PREFIX_HEADER = "$(PROJECT_DIR)/LKYSaoLei/Pch/PrefixHeader.pch";
+				INFOPLIST_FILE = LKYSaoLei/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1477,7 +1489,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MJ444N6W35;
-				INFOPLIST_FILE = QQMusicLKY01Tests/Info.plist;
+				INFOPLIST_FILE = LKYSaoLeiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1496,7 +1508,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MJ444N6W35;
-				INFOPLIST_FILE = QQMusicLKY01Tests/Info.plist;
+				INFOPLIST_FILE = LKYSaoLeiTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1514,7 +1526,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MJ444N6W35;
-				INFOPLIST_FILE = QQMusicLKY01UITests/Info.plist;
+				INFOPLIST_FILE = LKYSaoLeiUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1523,7 +1535,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mcx.----UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = QQMusicLKY01;
+				TEST_TARGET_NAME = LKYSaoLei;
 			};
 			name = Debug;
 		};
@@ -1532,7 +1544,7 @@
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = MJ444N6W35;
-				INFOPLIST_FILE = QQMusicLKY01UITests/Info.plist;
+				INFOPLIST_FILE = LKYSaoLeiUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1541,7 +1553,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.mcx.----UITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = QQMusicLKY01;
+				TEST_TARGET_NAME = LKYSaoLei;
 			};
 			name = Release;
 		};

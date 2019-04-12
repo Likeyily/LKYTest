@@ -13,7 +13,7 @@
 #define SCREEN_HEIGHT   [UIScreen mainScreen].bounds.size.height
 #define H(b) SCREEN_HEIGHT * b / 667
 #define W(a) SCREEN_WIDTH * a / 375
-#define F(c) (SCREEN_WIDTH>375)?SCREEN_WIDTH:((SCREEN_WIDTH+375)/2)*c/375
+#define F(c) (SCREEN_WIDTH>375)?((SCREEN_WIDTH+375)/2)*c/375:W(c)
 
 /**
  判断机型是否是iPhoneX
