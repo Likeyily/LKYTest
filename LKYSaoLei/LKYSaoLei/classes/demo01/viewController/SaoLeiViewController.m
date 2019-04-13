@@ -476,13 +476,24 @@
         //储存最高记录
         NSDictionary *hsDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"highestScore"];
         if (!hsDic) {
-            hsDic = [NSDictionary dictionary];
+            hsDic = @{@"highestScore":@"--"};
+            
         }
         
-        NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:hsDic];
+        NSString * oldHighestStr = [hsDic objectForKey:@"highestScore"];
         
-        [mdic setValue:[NSString stringWithFormat:@"%d",self.timeNumber] forKey:[NSString stringWithFormat: @"%d",self.MTotal]];
-        [[NSUserDefaults standardUserDefaults] setObject:mdic forKey:@"highestScore"];
+        int nHs = self.timeNumber;
+        
+        if (![oldHighestStr isEqualToString:@"--"]) {
+            if (nHs<[oldHighestStr intValue]) {
+                NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:hsDic];
+                
+                [mdic setValue:[NSString stringWithFormat:@"%d",self.timeNumber] forKey:[NSString stringWithFormat: @"%d",self.MTotal]];
+                [[NSUserDefaults standardUserDefaults] setObject:mdic forKey:@"highestScore"];
+            }
+        }
+        
+        
         
         
         
