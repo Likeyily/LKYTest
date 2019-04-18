@@ -56,6 +56,9 @@
 @property(nonatomic,strong)UISlider *mNumSlider;
 /**滑动条值*/
 @property(nonatomic,strong)UILabel *sliderValueLabel;
+/**每行多少格*/
+@property(nonatomic,strong)UITextField *rowForLine;
+@property(nonatomic,assign)int rowForLineNum;
 
 @end
 
@@ -71,6 +74,8 @@
     self.view.backgroundColor = arcColor;
     
     self.MTotal = 55;
+    
+    self.rowForLineNum = 12;
     
     self.timeNumber = 0;
     self.remainingNum = self.MTotal;
@@ -133,8 +138,8 @@
     NSDictionary *hsDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"highestScore"];
     
     if (hsDic) {
-        if ([[hsDic allKeys] containsObject:[NSString stringWithFormat: @"%d",self.MTotal]]) {
-            hsStr = hsDic[[NSString stringWithFormat: @"%d",self.MTotal]];
+        if ([[hsDic allKeys] containsObject:[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]]) {
+            hsStr = hsDic[[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]];
         }
     }
     
@@ -182,15 +187,17 @@
 -(void)addSaoLeiView
 {
     self.saoLeiView = [[UIView alloc]initWithFrame:CGRectZero];
-    self.saoLeiView.backgroundColor = BackColor238;
+//    self.saoLeiView.backgroundColor = BackColor238;//不重新设置约束会留边，去掉底部颜色
     [self.view addSubview:self.saoLeiView];
     
-    CGFloat ww = (SCREEN_WIDTH-30)/13;
+    CGFloat ww = (SCREEN_WIDTH-30)/self.rowForLineNum;
+    
+    int hLine = self.rowForLineNum*3/2;
     
     [self.saoLeiView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view).offset(15);
         make.right.equalTo(self.view).offset(-15);
-        make.height.equalTo(@(ww*20));
+        make.height.equalTo(@(ww*hLine));
         make.centerY.equalTo(self.view).offset((NAVH-64+W(30))/2);
     }];
     
@@ -214,9 +221,9 @@
 -(void)initAllArr
 {
     _allArr = [NSMutableArray array];
-    for (int i = 0; i<20; i++) {
+    for (int i = 0; i<self.rowForLineNum*3/2; i++) {
         NSMutableArray *unitArr = [NSMutableArray array];
-        for (int j=0; j<13; j++) {
+        for (int j=0; j<self.rowForLineNum; j++) {
             [unitArr addObject:@""];
         }
         [_allArr addObject:unitArr];
@@ -233,8 +240,8 @@
 #pragma mark 添加雷
 -(void)addM
 {
-    int arcLine = arc4random()%20;
-    int arcRow = arc4random()%13;
+    int arcLine = arc4random()%self.rowForLineNum*3/2;
+    int arcRow = arc4random()%self.rowForLineNum;
     
     NSArray *unitArr = self.allArr[arcLine];
     NSString *resultStr = unitArr[arcRow];
@@ -253,20 +260,21 @@
 -(void)addButtons
 {
     
-    for (int i = 0; i<20; i++) {
+    for (int i = 0; i<self.rowForLineNum*3/2; i++) {
         NSMutableArray *unitArr = [NSMutableArray array];
-        for (int j=0; j<13; j++) {
+        for (int j=0; j<self.rowForLineNum; j++) {
             [unitArr addObject:@""];
         }
         [_allArr addObject:unitArr];
     }
     
-    CGFloat ww = (SCREEN_WIDTH-30)/13;
-    for (int i = 0; i<20; i++) {
+    self.buttonArr = [NSMutableArray array];
+    CGFloat ww = (SCREEN_WIDTH-30)/self.rowForLineNum;
+    for (int i = 0; i<self.rowForLineNum*3/2; i++) {
         
         NSMutableArray *unitArr = [NSMutableArray array];
         
-        for (int j=0; j<13; j++) {
+        for (int j=0; j<self.rowForLineNum; j++) {
 
             MButton *button = [[MButton alloc]initWithFrame:CGRectMake(j*ww, i*ww, ww, ww)];
             [button setTitle:@" " forState:(UIControlStateNormal)];
@@ -356,7 +364,7 @@
         }
     }
     //下
-    if(line<19)
+    if(line<self.rowForLineNum*3/2-1)
     {
         MButton *mButton = self.buttonArr[line+1][row];
         [rButtonArr addObject:mButton];
@@ -379,7 +387,7 @@
         }
     }
     //右
-    if(row<12)
+    if(row<self.rowForLineNum-1)
     {
         MButton *mButton = self.buttonArr[line][row+1];
         [rButtonArr addObject:mButton];
@@ -401,7 +409,7 @@
         }
     }
     //右上
-    if(line>0&&row<12)
+    if(line>0&&row<self.rowForLineNum-1)
     {
         MButton *mButton = self.buttonArr[line-1][row+1];
         [rButtonArr addObject:mButton];
@@ -412,7 +420,7 @@
         }
     }
     //左下
-    if(row>0&&line<19)
+    if(row>0&&line<self.rowForLineNum*3/2-1)
     {
         MButton *mButton = self.buttonArr[line+1][row-1];
         [rButtonArr addObject:mButton];
@@ -423,7 +431,7 @@
         }
     }
     //右下
-    if(line<19&&row<12)
+    if(line<self.rowForLineNum*3/2-1&&row<self.rowForLineNum-1)
     {
         MButton *mButton = self.buttonArr[line+1][row+1];
         [rButtonArr addObject:mButton];
@@ -440,7 +448,7 @@
     else
     {
         //@“” 用于button再取出来会变成null，有时候又会是@“ ”，分不清 button 的初始状态时@“ ”
-        [button setTitle:@"  " forState:(UIControlStateNormal)];
+        [button setTitle:@"V" forState:(UIControlStateNormal)];
         button.backgroundColor = BackColor238;
         for (MButton *bt in rButtonArr) {
 
@@ -488,9 +496,16 @@
             if (nHs<[oldHighestStr intValue]) {
                 NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:hsDic];
                 
-                [mdic setValue:[NSString stringWithFormat:@"%d",self.timeNumber] forKey:[NSString stringWithFormat: @"%d",self.MTotal]];
+                [mdic setValue:[NSString stringWithFormat:@"%d",self.timeNumber] forKey:[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]];
                 [[NSUserDefaults standardUserDefaults] setObject:mdic forKey:@"highestScore"];
             }
+        }
+        else
+        {
+            NSMutableDictionary *mdic = [NSMutableDictionary dictionaryWithDictionary:hsDic];
+            
+            [mdic setValue:[NSString stringWithFormat:@"%d",self.timeNumber] forKey:[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]];
+            [[NSUserDefaults standardUserDefaults] setObject:mdic forKey:@"highestScore"];
         }
         
         
@@ -550,8 +565,8 @@
     NSDictionary *hsDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"highestScore"];
     
     if (hsDic) {
-        if ([[hsDic allKeys] containsObject:[NSString stringWithFormat: @"%d",self.MTotal]]) {
-            hsStr = hsDic[[NSString stringWithFormat: @"%d",self.MTotal]];
+        if ([[hsDic allKeys] containsObject:[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]]) {
+            hsStr = hsDic[[NSString stringWithFormat: @"%d%d",self.MTotal,self.rowForLineNum]];
         }
     }
     self.highestScorelabel.text = [NSString stringWithFormat:@"最高分数：%@",hsStr];
@@ -600,11 +615,6 @@
         }];
         
         
-        
-//        UITapGestureRecognizer *tap =[[UITapGestureRecognizer alloc]init];
-//        [tap addTarget:self action:@selector(retureView:)];
-//        [_maskSetView addGestureRecognizer:tap];
-        
         //添加弹框内容
         [self addSetMaskContent];
     }
@@ -623,8 +633,9 @@
     view.layer.cornerRadius = W(10);
     [self.maskSetView addSubview:view];
     
-    self.mNumSlider = [[UISlider alloc]initWithFrame:CGRectMake(0, W(5), view.width-30, view.height/3-W(10))];
-    self.mNumSlider.centerX = view.width/2;
+    self.mNumSlider = [[UISlider alloc]initWithFrame:CGRectMake(0, W(5), view.width-30-W(50), W(20))];
+    self.mNumSlider.x = 15;
+    self.mNumSlider.centerY = W(5)+view.height/6;
     self.mNumSlider.minimumValue = 30;
     self.mNumSlider.maximumValue = 60;
     self.mNumSlider.value = 55;
@@ -632,10 +643,18 @@
     [self.mNumSlider addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     [view addSubview:self.mNumSlider];
     
-    self.sliderValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, view.height/3 , view.width,view.height/3)];
+    self.sliderValueLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, W(5) , W(50),view.height/3)];
+    self.sliderValueLabel.right = view.width-15;
     self.sliderValueLabel.text = [NSString stringWithFormat:@"%d",self.MTotal];
     self.sliderValueLabel.textAlignment = NSTextAlignmentCenter;
+    
     [view addSubview:self.sliderValueLabel];
+    
+    self.rowForLine = [[UITextField alloc]initWithFrame:CGRectMake(0, W(5)+view.height/3, view.width, view.height/3)];
+    self.rowForLine.placeholder = @"修改每行个数，默认12（7-15）";
+    self.rowForLine.textAlignment = NSTextAlignmentCenter;
+    self.rowForLine.keyboardType = UIKeyboardTypeNumberPad;
+    [view addSubview:self.rowForLine];
     
     UIButton *sureButton = [[UIButton alloc]initWithFrame:CGRectMake(0, view.height/3*2, view.width, view.height/3)];
     [sureButton setTitle:@"确定" forState:(UIControlStateNormal)];
@@ -653,12 +672,31 @@
 {
     self.MTotal = (int)self.mNumSlider.value;
     
-    [self initAllArr];
+//    [self initAllArr];
+ 
+    if (self.rowForLine.text.length>0) {
+        int rn = [self.rowForLine.text intValue];
+        if (rn>=7&&rn<=15) {
+            for (id vv in self.saoLeiView.subviews) {
+                if ([vv isKindOfClass:[MButton class]]) {
+                    [vv removeFromSuperview];
+                }
+            }
+            self.rowForLineNum = rn;
+            [self addButtons];
+        }
+        else
+        {
+            [MBProgressHUD showError:@"输入错误"];
+            return;
+        }
+    }
+    //清空修改格数项
+    self.rowForLine.text = @"";
     
     [self startAgain];
-    
     [MBProgressHUD showError:@"开始新一局！"];
-    
+    [self.rowForLine resignFirstResponder];
     self.maskSetView.hidden = YES;
 }
 //#pragma mark 收回设置蒙版
